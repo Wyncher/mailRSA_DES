@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр письма</title>
+<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="styles/reset.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(window).on('load pageshow', function () {
+            $('body').fadeIn();
+        });
+        $("a:not([href*=\\#])").click(function() {
+            if (!$(this).attr('target')) {
+                $('body').fadeOut();
+                let url = $(this).attr('href');
+                window.setTimeout(function() {
+                    window.location.href = url;
+                }, 1000);
+                return false;
+            }
+        });
+    </script>
+</head>
+<body>
+  <div class="lists">
+    <div class="list-screen">
+     
+      <div class="back-button">
+
+
+          <a  href="inbox?dir={{.dir}}" style="margin-top: 2px;"><img id="back" alt="Назад"> </a>
+      </div>  
+      <div class="list">
+
+       <h2>Тема: {{.subject}}</h2>
+        <h1>От кого: {{.from}}</h1>
+        <p>{{.body}}</p>
+        <h6>Дата: {{.date}}</h6>
+          {{if .out}}
+          {{else}}
+
+          <h1>{{.signature}}</h1>
+          {{if .draft}}
+          <a href="/view?draft={{.id}}&download=1&dir={{.dir}}"><img src="static/save.png" alt="Скачать вложения" style="width: 50px;height: 50px"></a>
+          {{else}}
+          <a href="/view?id={{.id}}&download=1&dir={{.dir}}"><img src="static/save.png" alt="Скачать вложения" style="width: 50px;height: 50px"></a>
+          {{end}}
+
+          {{if .del}}
+        <a href="/view?delete={{.id}}&draft={{.id}}&id={{.id}}"><img src="static/delete.png" alt="Удалить" style="width: 50px;height: 50px"></a>
+          {{end}}
+          {{if .draft}}
+          <a href="/view?draft={{.id}}"><img src="static/send.png" alt="Отправить" style="width: 50px;height: 50px"></a>
+          {{end}}
+          {{end}}
+      </div>
+    </div>
+    
+  </div>
+</body>
+
+
+</html>

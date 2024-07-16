@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/m41pweg1ei0gnyz7x3dnqh0l9xvw1abaao75ty4vow0gkc4r/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+  <script type="text/javascript">
+  tinymce.init({
+    selector: '#myTextarea',
+    width: 600,
+    height: 300,
+    plugins: [
+      'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+      'table emoticons template paste help'
+    ],
+    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+      'bullist numlist outdent indent | link image | preview media fullscreen | ' +
+      'forecolor backcolor emoticons | help',
+   
+    menubar: 'view insert format tools table help',
+    content_css: 'css/content.css'
+  });
+  </script>
+</head>
+
+<body>
+  <textarea id="myTextarea"></textarea>
+</body>
+</html>

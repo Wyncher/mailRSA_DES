@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новое письмо</title>
+    
+<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="styles/reset.css">
+<script src="https://cdn.tiny.cloud/1/m41pweg1ei0gnyz7x3dnqh0l9xvw1abaao75ty4vow0gkc4r/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+
+
+<script type="text/javascript">
+    $(window).on('load pageshow', function () {
+        $('body').fadeIn();
+    });
+    $("a:not([href*=\\#])").click(function() {
+        if (!$(this).attr('target')) {
+            $('body').fadeOut();
+            let url = $(this).attr('href');
+            window.setTimeout(function() {
+                window.location.href = url;
+            }, 500);
+            return false;
+        }
+    });
+    tinymce.init({
+  selector: '#letter',
+  width: 600,
+  height: 300,
+  plugins: [
+    'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+    'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+    'table emoticons template paste help'
+  ],
+  toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+    'bullist numlist outdent indent | link image | preview media fullscreen | ' +
+    'forecolor backcolor emoticons | help',
+ 
+  menubar: 'insert format tools table help'
+
+});
+</script>
+</head>
+<body>
+  <div class="lists">
+    <div class="new-screen">
+      <div class="back-button">
+        <a href="inbox" style="margin-top: 2px;"><img src="static/back.png" width="50"
+          height="50" alt="Выход"></a>
+      </div>
+       <div class="send-area">
+        <h1>Новое сообщение</h1>
+        <form id="new" enctype="multipart/form-data" method="post">
+          <input id="email" type="email" name="email" placeholder="Email">
+          <input id="subject" type="text" name="subject" placeholder="Тема">
+          <input id="attach" type="file" name="attach">
+        <textarea name="textarea" id="letter"></textarea>
+            <input type="checkbox" id="draft" name="draft" placeholder="Сохранить только в черновик?" style="width: 10px"/>
+            <label for="draft" >Сохранить только в черновик?</label>
+           <button type="submit"><img src="static/send.png" width="100"
+                                 height="100" alt="send"></button>
+        </form>
+       </div>
+    </div>
+    
+  </div>
+</body>
+
+
+</html>

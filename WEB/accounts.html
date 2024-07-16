@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аккаунты</title>
+<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="styles/reset.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+<script>
+    $(window).on('load pageshow', function () {
+        $('body').fadeIn();
+    });
+    $("a:not([href*=\\#])").click(function() {
+        if (!$(this).attr('target')) {
+            $('body').fadeOut();
+            let url = $(this).attr('href');
+            window.setTimeout(function() {
+                window.location.href = url;
+            }, 1000);
+            return false;
+        }
+    });
+    </script>
+    </head>
+<body>
+    <div class="lists">
+      <div class="account-screen">
+
+          <div class="back-button">
+              <a  href="inbox?dir={{.dir}}" style="margin-top: 2px;"><img id="back" alt="Назад"> </a>
+          </div>
+          <div class="users-list">
+          {{range $user := .u}}
+
+          <div class="user">
+            <a href="/accounts?account={{$user}}">
+              <h1>{{$user}}</h1>
+            </a>
+          </div>
+
+          {{end}}
+
+      </div>
+      
+    </div>
+</body>
+  
+
+</html>

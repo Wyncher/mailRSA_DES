@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Письма</title>
+<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="styles/reset.css">
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(window).on('load pageshow', function () {
+            $('body').fadeIn();
+        });
+        $("a:not([href*=\\#])").click(function() {
+            if (!$(this).attr('target')) {
+                $('body').fadeOut();
+                let url = $(this).attr('href');
+                window.setTimeout(function() {
+                    window.location.href = url;
+                }, 1000);
+                return false;
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="lists">
+      <div class="lists-screen">
+        <div class="left-inner">
+          <div class="contol-buttons">
+            <a href="accounts"><img id="accounts"  src="static/account.png" width="50"
+                                       height="50" alt="Аккаунты"> <label for="accounts">Аккаунты</label></a>
+
+            <a href="/?quit=1" style="margin-top: 2px;"><img id="quit"  width="50"
+                                    height="50" alt="Выход"> <label for="accounts">Выход</label></a></a>
+              <a href="/inbox?sync=true" style="margin-top: 2px;"><img id="sync"  width="60"
+                                                           height="45" alt="Загрузить почту"> <label for="accounts">Обновить</label></a></a>
+              <a href="/inbox?keys=change" style="margin-top: 2px;"><img id="keys"  width="50"
+                                                                       height="50" alt="Сменить ключи"> <label for="accounts">Сменить ключи</label></a></a>
+          </div>
+          <a href="new">
+        <button class="blob-btn">
+          Новое сообщение
+        <span class="blob-btn__inner">
+        <span class="blob-btn__blobs">
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        </span>
+    </span>
+        </button>
+      </a>
+
+  <ul class="mail-dirs-ul">
+
+    <li><span><a href="/inbox?dir=income">Входящие</a></span></li>
+  
+    <li><span><a href="/inbox?dir=out___">Исходящие</a></span></li>
+  
+    <li><span><a href="/inbox?dir=delete">Корзина</a></span></li>
+
+    <li><span><a href="/inbox?dir=draft_">Черновики</a></span></li>
+  </ul>
+  
+
+        </div>
+        
+      <div class="center-screen">
+
+
+        <div class="mail-list">
+          {{range $l := .t}}
+            <a href="/view/?id={{$l.id}}&dir={{.type}}">
+          <div class="mail">
+
+
+
+                <h1>{{$l.from}}</h1>
+              <h2>{{$l.subject}}</h2>
+                <h5>{{$l.date}}</h5>
+               <!-- <p class="html_preview">
+              {{$l.body}}
+                </p>-->
+
+
+          </div>
+            </a>
+          {{end}}
+
+
+        </div>
+      </div>
+      
+    </div>
+</body>
+  
+
+</html>

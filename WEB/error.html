@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+<link rel="stylesheet" href="styles/style.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(window).on('load pageshow', function () {
+            $('body').fadeIn();
+        });
+        $("a:not([href*=\\#])").click(function() {
+            if (!$(this).attr('target')) {
+                $('body').fadeOut();
+                let url = $(this).attr('href');
+                window.setTimeout(function() {
+                    window.location.href = url;
+                }, 1000);
+                return false;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="login">
+
+        <div class="app-title" style="color: white">
+          <h1>Извините, произошла ошибка. Попробуйте снова!</h1>
+        </div>
+
+    </div>
+  </body>
+  
+
+</html>
